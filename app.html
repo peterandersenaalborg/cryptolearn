@@ -335,7 +335,7 @@ window.onload=async()=>{
 
 async function fetchCoins(){
   try{
-    const r=await fetch('https://api.allorigins.win/raw?url='+encodeURIComponent('https://api.coingecko.com/api/v3/coins/markets?vs_currency=eur&order=market_cap_desc&per_page=100&page=1&sparkline=false&price_change_percentage=24h'));
+    const r=await fetch('https://corsproxy.io/?'+encodeURIComponent('https://api.coingecko.com/api/v3/coins/markets?vs_currency=eur&order=market_cap_desc&per_page=100&page=1&sparkline=false&price_change_percentage=24h'));
     const d=await r.json();
     S.coins=d;
     d.forEach(c=>{S.prices[c.id]=c.current_price;});
@@ -347,7 +347,7 @@ async function fetchCoins(){
 async function fetchPrices(){
   try{
     const ids=S.coins.map(c=>c.id).join(',');
-    const r=await fetch('https://api.allorigins.win/raw?url='+encodeURIComponent(`https://api.coingecko.com/api/v3/simple/price?ids=${ids}&vs_currencies=eur&include_24hr_change=true`));
+    const r=await fetch('https://corsproxy.io/?'+encodeURIComponent(`https://api.coingecko.com/api/v3/simple/price?ids=${ids}&vs_currencies=eur&include_24hr_change=true`));
     const d=await r.json();
     Object.entries(d).forEach(([id,v])=>{
       S.prices[id]=v.eur;
