@@ -1,0 +1,465 @@
+<!DOCTYPE html>
+<html lang="da">
+<head>
+<meta charset="UTF-8">
+<meta name="viewport" content="width=device-width, initial-scale=1.0">
+<meta name="description" content="CryptoLearn – Øv dig i crypto trading uden risiko. Lær at handle med fiktive penge og rigtige priser.">
+<meta name="theme-color" content="#f8f7f4">
+<title>CryptoLearn – Øv dig i crypto trading</title>
+<link href="https://fonts.googleapis.com/css2?family=Playfair+Display:wght@700;900&family=Epilogue:wght@300;400;500;600&display=swap" rel="stylesheet">
+<style>
+:root {
+  --bg:       #f8f7f4;
+  --bg2:      #f0ede8;
+  --white:    #ffffff;
+  --ink:      #0f0e0c;
+  --ink2:     #3a3832;
+  --muted:    #8c8880;
+  --accent:   #1a6b3c;
+  --accent2:  #e8f5ee;
+  --red:      #c0392b;
+  --red2:     #fdf0ee;
+  --border:   rgba(15,14,12,0.1);
+  --border2:  rgba(15,14,12,0.06);
+  --display:  'Playfair Display', serif;
+  --sans:     'Epilogue', sans-serif;
+  --radius:   14px;
+  --shadow:   0 2px 20px rgba(0,0,0,0.08);
+  --shadow2:  0 8px 40px rgba(0,0,0,0.12);
+}
+*{box-sizing:border-box;margin:0;padding:0;}
+html{scroll-behavior:smooth;}
+body{background:var(--bg);color:var(--ink);font-family:var(--sans);line-height:1.6;overflow-x:hidden;}
+
+/* NAV */
+nav{position:fixed;top:0;left:0;right:0;z-index:100;background:rgba(248,247,244,0.92);backdrop-filter:blur(16px);border-bottom:1px solid var(--border2);padding:0 24px;}
+.nav-inner{max-width:1100px;margin:0 auto;height:64px;display:flex;align-items:center;justify-content:space-between;}
+.nav-logo{font-family:var(--display);font-size:22px;font-weight:900;color:var(--ink);text-decoration:none;letter-spacing:-0.5px;}
+.nav-logo span{color:var(--accent);}
+.nav-links{display:flex;align-items:center;gap:32px;}
+.nav-links a{font-size:14px;color:var(--ink2);text-decoration:none;font-weight:500;transition:color 0.2s;}
+.nav-links a:hover{color:var(--accent);}
+.lang-switch{display:flex;gap:4px;background:var(--bg2);border-radius:8px;padding:3px;}
+.lang-btn{padding:4px 10px;border-radius:6px;font-size:12px;font-weight:600;cursor:pointer;border:none;background:transparent;color:var(--muted);transition:all 0.2s;}
+.lang-btn.active{background:var(--white);color:var(--ink);box-shadow:0 1px 4px rgba(0,0,0,0.1);}
+.btn-nav{padding:8px 20px;border-radius:8px;background:var(--ink);color:var(--white);font-size:13px;font-weight:600;text-decoration:none;transition:all 0.2s;border:none;cursor:pointer;}
+.btn-nav:hover{background:var(--accent);}
+.hamburger{display:none;flex-direction:column;gap:5px;cursor:pointer;padding:4px;}
+.hamburger span{width:22px;height:2px;background:var(--ink);border-radius:2px;transition:all 0.3s;}
+
+/* HERO */
+.hero{padding:140px 24px 100px;max-width:1100px;margin:0 auto;display:grid;grid-template-columns:1fr 1fr;gap:60px;align-items:center;}
+.hero-badge{display:inline-flex;align-items:center;gap:8px;background:var(--accent2);border:1px solid rgba(26,107,60,0.2);border-radius:20px;padding:6px 14px;font-size:12px;font-weight:600;color:var(--accent);margin-bottom:24px;letter-spacing:0.5px;}
+.hero-badge::before{content:'';width:6px;height:6px;border-radius:50%;background:var(--accent);}
+.hero h1{font-family:var(--display);font-size:clamp(42px,5vw,64px);font-weight:900;line-height:1.05;letter-spacing:-2px;color:var(--ink);margin-bottom:24px;}
+.hero h1 em{font-style:normal;color:var(--accent);}
+.hero-sub{font-size:18px;color:var(--ink2);line-height:1.7;margin-bottom:36px;font-weight:300;max-width:480px;}
+.hero-actions{display:flex;gap:12px;flex-wrap:wrap;margin-bottom:48px;}
+.btn-primary{padding:14px 28px;border-radius:10px;background:var(--ink);color:var(--white);font-size:15px;font-weight:600;text-decoration:none;transition:all 0.2s;display:inline-flex;align-items:center;gap:8px;}
+.btn-primary:hover{background:var(--accent);transform:translateY(-1px);box-shadow:var(--shadow2);}
+.btn-secondary{padding:14px 28px;border-radius:10px;background:transparent;color:var(--ink);font-size:15px;font-weight:600;text-decoration:none;border:1.5px solid var(--border);transition:all 0.2s;}
+.btn-secondary:hover{border-color:var(--ink);background:var(--white);}
+.hero-stats{display:flex;gap:32px;}
+.stat{border-left:2px solid var(--border);padding-left:16px;}
+.stat-num{font-family:var(--display);font-size:28px;font-weight:700;color:var(--ink);}
+.stat-label{font-size:12px;color:var(--muted);font-weight:500;letter-spacing:0.5px;}
+
+/* APP MOCKUP */
+.mockup-wrap{position:relative;}
+.mockup{background:var(--ink);border-radius:28px;padding:20px;box-shadow:var(--shadow2),0 0 0 1px rgba(255,255,255,0.1);position:relative;overflow:hidden;}
+.mockup::before{content:'';position:absolute;top:-60px;right:-60px;width:200px;height:200px;border-radius:50%;background:radial-gradient(circle,rgba(26,107,60,0.3),transparent 70%);}
+.mockup-header{display:flex;align-items:center;justify-content:space-between;margin-bottom:16px;}
+.mockup-brand{font-family:var(--display);font-size:16px;color:#e8ecf4;font-weight:700;}
+.mockup-brand span{color:#00d68f;}
+.mockup-bal{background:rgba(255,255,255,0.1);border-radius:16px;padding:4px 12px;font-size:11px;color:#00d68f;font-family:monospace;}
+.mockup-tabs{display:flex;gap:0;border-bottom:1px solid rgba(255,255,255,0.08);margin-bottom:14px;}
+.mockup-tab{flex:1;padding:8px 4px;font-size:9px;color:rgba(255,255,255,0.4);text-align:center;letter-spacing:1px;text-transform:uppercase;}
+.mockup-tab.a{color:#3d7fff;border-bottom:2px solid #3d7fff;}
+.price-card{background:rgba(255,255,255,0.05);border-radius:10px;padding:12px;margin-bottom:8px;display:flex;align-items:center;gap:10px;}
+.price-dot{width:28px;height:28px;border-radius:50%;display:flex;align-items:center;justify-content:center;font-size:9px;font-weight:700;color:white;flex-shrink:0;}
+.price-info{flex:1;}
+.price-name{font-size:11px;color:#e8ecf4;font-weight:500;}
+.price-sym{font-size:9px;color:rgba(255,255,255,0.4);}
+.price-val{text-align:right;}
+.price-eur{font-size:11px;color:#e8ecf4;font-family:monospace;}
+.price-pct{font-size:9px;font-family:monospace;}
+.price-pct.up{color:#00d68f;}
+.price-pct.down{color:#ff4d6a;}
+.mockup-badge{position:absolute;top:-10px;right:20px;background:var(--accent);color:white;font-size:10px;font-weight:700;padding:4px 12px;border-radius:12px;letter-spacing:1px;}
+
+/* SECTION COMMON */
+section{padding:100px 24px;}
+.section-inner{max-width:1100px;margin:0 auto;}
+.section-tag{font-size:11px;letter-spacing:3px;text-transform:uppercase;font-weight:600;color:var(--accent);margin-bottom:12px;}
+.section-title{font-family:var(--display);font-size:clamp(32px,4vw,48px);font-weight:900;letter-spacing:-1px;line-height:1.1;color:var(--ink);margin-bottom:16px;}
+.section-sub{font-size:17px;color:var(--muted);font-weight:300;max-width:560px;line-height:1.7;}
+
+/* HOW IT WORKS */
+.how{background:var(--white);border-radius:24px;padding:64px;}
+.steps{display:grid;grid-template-columns:repeat(3,1fr);gap:40px;margin-top:56px;position:relative;}
+.steps::before{content:'';position:absolute;top:28px;left:calc(16.67% + 20px);right:calc(16.67% + 20px);height:1px;background:var(--border);z-index:0;}
+.step{text-align:center;position:relative;z-index:1;}
+.step-num{width:56px;height:56px;border-radius:50%;background:var(--ink);color:var(--white);font-family:var(--display);font-size:20px;font-weight:900;display:flex;align-items:center;justify-content:center;margin:0 auto 20px;position:relative;}
+.step-num::after{content:'';position:absolute;inset:-4px;border-radius:50%;border:1px solid var(--border2);}
+.step h3{font-size:17px;font-weight:600;margin-bottom:8px;color:var(--ink);}
+.step p{font-size:14px;color:var(--muted);line-height:1.6;}
+
+/* BENEFITS */
+.benefits-grid{display:grid;grid-template-columns:repeat(2,1fr);gap:16px;margin-top:48px;}
+.benefit{background:var(--white);border:1px solid var(--border2);border-radius:var(--radius);padding:28px;transition:all 0.2s;}
+.benefit:hover{box-shadow:var(--shadow);transform:translateY(-2px);}
+.benefit-icon{width:44px;height:44px;border-radius:10px;display:flex;align-items:center;justify-content:center;font-size:20px;margin-bottom:16px;}
+.benefit-icon.green{background:var(--accent2);}
+.benefit-icon.red{background:var(--red2);}
+.benefit-icon.blue{background:#e8f0fe;}
+.benefit-icon.yellow{background:#fef9e7;}
+.benefit h3{font-size:16px;font-weight:600;margin-bottom:8px;color:var(--ink);}
+.benefit p{font-size:14px;color:var(--muted);line-height:1.6;}
+
+/* FEATURES STRIP */
+.features-strip{background:var(--ink);border-radius:24px;padding:56px;margin-top:60px;}
+.features-strip .section-title{color:var(--white);}
+.features-strip .section-sub{color:rgba(255,255,255,0.5);}
+.features-list{display:grid;grid-template-columns:repeat(3,1fr);gap:24px;margin-top:40px;}
+.feature{border-top:1px solid rgba(255,255,255,0.1);padding-top:20px;}
+.feature-label{font-size:11px;letter-spacing:2px;color:#00d68f;text-transform:uppercase;font-weight:600;margin-bottom:8px;}
+.feature h4{font-size:15px;color:white;font-weight:500;margin-bottom:6px;}
+.feature p{font-size:13px;color:rgba(255,255,255,0.4);line-height:1.6;}
+
+/* FAQ */
+.faq-list{margin-top:48px;display:flex;flex-direction:column;gap:8px;}
+.faq-item{background:var(--white);border:1px solid var(--border2);border-radius:var(--radius);overflow:hidden;}
+.faq-q{padding:20px 24px;font-size:15px;font-weight:600;cursor:pointer;display:flex;justify-content:space-between;align-items:center;color:var(--ink);user-select:none;}
+.faq-q::after{content:'+';font-size:20px;color:var(--muted);font-weight:300;transition:transform 0.2s;flex-shrink:0;}
+.faq-item.open .faq-q::after{transform:rotate(45deg);}
+.faq-a{font-size:14px;color:var(--muted);line-height:1.7;padding:0 24px;max-height:0;overflow:hidden;transition:all 0.3s ease;}
+.faq-item.open .faq-a{padding:0 24px 20px;max-height:200px;}
+
+/* CTA */
+.cta-section{background:var(--accent);border-radius:24px;padding:80px 60px;text-align:center;}
+.cta-section h2{font-family:var(--display);font-size:clamp(32px,4vw,52px);font-weight:900;color:white;letter-spacing:-1px;margin-bottom:16px;}
+.cta-section p{font-size:18px;color:rgba(255,255,255,0.75);margin-bottom:36px;font-weight:300;}
+.btn-cta{display:inline-flex;align-items:center;gap:10px;padding:16px 36px;border-radius:10px;background:white;color:var(--accent);font-size:16px;font-weight:700;text-decoration:none;transition:all 0.2s;}
+.btn-cta:hover{transform:translateY(-2px);box-shadow:0 8px 30px rgba(0,0,0,0.2);}
+.cta-note{font-size:13px;color:rgba(255,255,255,0.5);margin-top:16px;}
+
+/* FOOTER */
+footer{padding:48px 24px;border-top:1px solid var(--border);}
+.footer-inner{max-width:1100px;margin:0 auto;display:flex;justify-content:space-between;align-items:center;flex-wrap:wrap;gap:16px;}
+.footer-logo{font-family:var(--display);font-size:18px;font-weight:900;}
+.footer-logo span{color:var(--accent);}
+.footer-note{font-size:13px;color:var(--muted);}
+.footer-links{display:flex;gap:24px;}
+.footer-links a{font-size:13px;color:var(--muted);text-decoration:none;transition:color 0.2s;}
+.footer-links a:hover{color:var(--ink);}
+
+/* ANIMATIONS */
+@keyframes fadeUp{from{opacity:0;transform:translateY(24px)}to{opacity:1;transform:translateY(0)}}
+.fade-up{opacity:0;animation:fadeUp 0.6s ease forwards;}
+.fade-up:nth-child(1){animation-delay:0.1s}
+.fade-up:nth-child(2){animation-delay:0.2s}
+.fade-up:nth-child(3){animation-delay:0.3s}
+.fade-up:nth-child(4){animation-delay:0.4s}
+
+/* RESPONSIVE */
+@media(max-width:768px){
+  .hero{grid-template-columns:1fr;gap:40px;padding:100px 20px 60px;}
+  .mockup-wrap{display:none;}
+  .steps{grid-template-columns:1fr;}
+  .steps::before{display:none;}
+  .benefits-grid{grid-template-columns:1fr;}
+  .features-list{grid-template-columns:1fr;}
+  .how{padding:36px 24px;}
+  .features-strip{padding:36px 24px;}
+  .cta-section{padding:48px 24px;}
+  .nav-links{display:none;}
+  .hamburger{display:flex;}
+  .footer-inner{flex-direction:column;text-align:center;}
+}
+</style>
+</head>
+<body>
+
+<!-- NAV -->
+<nav>
+  <div class="nav-inner">
+    <a href="#" class="nav-logo">Crypto<span>Learn</span></a>
+    <div class="nav-links">
+      <a href="#how" data-da="Sådan virker det" data-en="How it works">Sådan virker det</a>
+      <a href="#benefits" data-da="Fordele" data-en="Benefits">Fordele</a>
+      <a href="#faq" data-da="FAQ" data-en="FAQ">FAQ</a>
+      <div class="lang-switch">
+        <button class="lang-btn active" onclick="setLang('da')">DA</button>
+        <button class="lang-btn" onclick="setLang('en')">EN</button>
+      </div>
+      <a href="app.html" class="btn-nav" data-da="Start gratis" data-en="Start free">Start gratis</a>
+    </div>
+    <div class="hamburger" onclick="toggleMenu()">
+      <span></span><span></span><span></span>
+    </div>
+  </div>
+</nav>
+
+<!-- HERO -->
+<div class="hero">
+  <div>
+    <div class="hero-badge fade-up" data-da="100% gratis · Ingen risiko" data-en="100% free · Zero risk">100% gratis · Ingen risiko</div>
+    <h1 class="fade-up" data-da="Lær crypto trading<br><em>uden at miste</em><br>en eneste krone" data-en="Learn crypto trading<br><em>without losing</em><br>a single cent">Lær crypto trading<br><em>uden at miste</em><br>en eneste krone</h1>
+    <p class="hero-sub fade-up" data-da="Øv dig med € 10.000 i fiktive penge og rigtige live-priser. Sæt alarmer, byg strategier og se din portefølje vokse – helt uden risiko." data-en="Practice with €10,000 in virtual money and real live prices. Set alerts, build strategies and watch your portfolio grow – completely risk-free.">Øv dig med € 10.000 i fiktive penge og rigtige live-priser. Sæt alarmer, byg strategier og se din portefølje vokse – helt uden risiko.</p>
+    <div class="hero-actions fade-up">
+      <a href="app.html" class="btn-primary" data-da="Kom i gang – det er gratis →" data-en="Get started – it's free →">Kom i gang – det er gratis →</a>
+      <a href="#how" class="btn-secondary" data-da="Sådan virker det" data-en="See how it works">Sådan virker det</a>
+    </div>
+    <div class="hero-stats fade-up">
+      <div class="stat">
+        <div class="stat-num">100+</div>
+        <div class="stat-label" data-da="KRYPTOER" data-en="CRYPTOS">KRYPTOER</div>
+      </div>
+      <div class="stat">
+        <div class="stat-num">Live</div>
+        <div class="stat-label" data-da="PRISER" data-en="PRICES">PRISER</div>
+      </div>
+      <div class="stat">
+        <div class="stat-num">€ 0</div>
+        <div class="stat-label" data-da="RISIKO" data-en="RISK">RISIKO</div>
+      </div>
+    </div>
+  </div>
+
+  <!-- APP MOCKUP -->
+  <div class="mockup-wrap">
+    <div class="mockup">
+      <div class="mockup-badge">LIVE</div>
+      <div class="mockup-header">
+        <div class="mockup-brand">Crypto<span>Learn</span></div>
+        <div class="mockup-bal">€ 10,842.33</div>
+      </div>
+      <div class="mockup-tabs">
+        <div class="mockup-tab a">Marked</div>
+        <div class="mockup-tab">Portefølje</div>
+        <div class="mockup-tab">Alarmer</div>
+        <div class="mockup-tab">Auto</div>
+      </div>
+      <div class="price-card">
+        <div class="price-dot" style="background:#f7931a">BTC</div>
+        <div class="price-info"><div class="price-name">Bitcoin</div><div class="price-sym">BTC</div></div>
+        <div class="price-val"><div class="price-eur">€ 84,230.50</div><div class="price-pct up">+2.41%</div></div>
+      </div>
+      <div class="price-card">
+        <div class="price-dot" style="background:#627eea">ETH</div>
+        <div class="price-info"><div class="price-name">Ethereum</div><div class="price-sym">ETH</div></div>
+        <div class="price-val"><div class="price-eur">€ 3,182.20</div><div class="price-pct up">+1.87%</div></div>
+      </div>
+      <div class="price-card">
+        <div class="price-dot" style="background:#e84142">AVAX</div>
+        <div class="price-info"><div class="price-name">Avalanche</div><div class="price-sym">AVAX</div></div>
+        <div class="price-val"><div class="price-eur">€ 28.94</div><div class="price-pct down">-0.63%</div></div>
+      </div>
+      <div class="price-card">
+        <div class="price-dot" style="background:#9945ff">SOL</div>
+        <div class="price-info"><div class="price-name">Solana</div><div class="price-sym">SOL</div></div>
+        <div class="price-val"><div class="price-eur">€ 142.80</div><div class="price-pct up">+3.12%</div></div>
+      </div>
+      <div class="price-card">
+        <div class="price-dot" style="background:#29abe2">ICP</div>
+        <div class="price-info"><div class="price-name">Internet Computer</div><div class="price-sym">ICP</div></div>
+        <div class="price-val"><div class="price-eur">€ 4.82</div><div class="price-pct up">+5.34%</div></div>
+      </div>
+    </div>
+  </div>
+</div>
+
+<!-- HOW IT WORKS -->
+<section id="how">
+  <div class="section-inner">
+    <div class="how">
+      <div class="section-tag" data-da="SÅDAN VIRKER DET" data-en="HOW IT WORKS">SÅDAN VIRKER DET</div>
+      <div class="section-title" data-da="Fra nybegynder til trader<br>i tre trin" data-en="From beginner to trader<br>in three steps">Fra nybegynder til trader<br>i tre trin</div>
+      <div class="steps">
+        <div class="step fade-up">
+          <div class="step-num">1</div>
+          <h3 data-da="Opret din konto" data-en="Create your account">Opret din konto</h3>
+          <p data-da="Gratis tilmelding på under et minut. Du starter med € 10.000 i fiktive penge klar til handel." data-en="Free signup in under a minute. You start with €10,000 in virtual money ready to trade.">Gratis tilmelding på under et minut. Du starter med € 10.000 i fiktive penge klar til handel.</p>
+        </div>
+        <div class="step fade-up">
+          <div class="step-num">2</div>
+          <h3 data-da="Køb og sælg crypto" data-en="Buy and sell crypto">Køb og sælg crypto</h3>
+          <p data-da="Vælg fra top 100 kryptoer med live priser. Sæt alarmer og auto-regler der handler for dig." data-en="Choose from top 100 cryptos with live prices. Set alerts and auto-rules that trade for you.">Vælg fra top 100 kryptoer med live priser. Sæt alarmer og auto-regler der handler for dig.</p>
+        </div>
+        <div class="step fade-up">
+          <div class="step-num">3</div>
+          <h3 data-da="Lær af dine resultater" data-en="Learn from your results">Lær af dine resultater</h3>
+          <p data-da="Følg din portefølje i realtid og sammenlign med andre på leaderboardet. Ingen penge tabt." data-en="Track your portfolio in real time and compare with others on the leaderboard. No money lost.">Følg din portefølje i realtid og sammenlign med andre på leaderboardet. Ingen penge tabt.</p>
+        </div>
+      </div>
+    </div>
+  </div>
+</section>
+
+<!-- BENEFITS -->
+<section id="benefits" style="padding-top:0">
+  <div class="section-inner">
+    <div class="section-tag" data-da="FORDELE" data-en="BENEFITS">FORDELE</div>
+    <div class="section-title" data-da="Hvorfor øve sig<br>med CryptoLearn?" data-en="Why practice with<br>CryptoLearn?">Hvorfor øve sig<br>med CryptoLearn?</div>
+    <div class="section-sub" data-da="Mange er bange for at miste penge i crypto. Vi giver dig en tryg måde at lære på." data-en="Many people are afraid of losing money in crypto. We give you a safe way to learn.">Mange er bange for at miste penge i crypto. Vi giver dig en tryg måde at lære på.</div>
+    <div class="benefits-grid">
+      <div class="benefit fade-up">
+        <div class="benefit-icon green">📈</div>
+        <h3 data-da="Rigtige priser – fiktive penge" data-en="Real prices – virtual money">Rigtige priser – fiktive penge</h3>
+        <p data-da="Live priser direkte fra markedet via CoinGecko. Du handler under realistiske betingelser uden risiko." data-en="Live prices directly from the market via CoinGecko. You trade under realistic conditions without risk.">Live priser direkte fra markedet via CoinGecko. Du handler under realistiske betingelser uden risiko.</p>
+      </div>
+      <div class="benefit fade-up">
+        <div class="benefit-icon blue">🤖</div>
+        <h3 data-da="Automatiske handelsregler" data-en="Automatic trading rules">Automatiske handelsregler</h3>
+        <p data-da="Opret bots der køber og sælger automatisk baseret på dine regler. Lær hvad der virker uden at miste noget." data-en="Create bots that buy and sell automatically based on your rules. Learn what works without losing anything.">Opret bots der køber og sælger automatisk baseret på dine regler. Lær hvad der virker uden at miste noget.</p>
+      </div>
+      <div class="benefit fade-up">
+        <div class="benefit-icon yellow">🔔</div>
+        <h3 data-da="Take-profit og stop-loss alarmer" data-en="Take-profit and stop-loss alerts">Take-profit og stop-loss alarmer</h3>
+        <p data-da="Sæt præcise grænser og få besked når kursen rammer dit mål. Øv disciplin og strategi." data-en="Set precise limits and get notified when the price hits your target. Practice discipline and strategy.">Sæt præcise grænser og få besked når kursen rammer dit mål. Øv disciplin og strategi.</p>
+      </div>
+      <div class="benefit fade-up">
+        <div class="benefit-icon red">🏆</div>
+        <h3 data-da="Konkurrér med andre" data-en="Compete with others">Konkurrér med andre</h3>
+        <p data-da="Se hvem der klarer sig bedst på leaderboardet. Motivation til at lære og forbedre din strategi." data-en="See who performs best on the leaderboard. Motivation to learn and improve your strategy.">Se hvem der klarer sig bedst på leaderboardet. Motivation til at lære og forbedre din strategi.</p>
+      </div>
+    </div>
+
+    <!-- FEATURES STRIP -->
+    <div class="features-strip">
+      <div class="section-tag" style="color:#00d68f" data-da="FUNKTIONER" data-en="FEATURES">FUNKTIONER</div>
+      <div class="section-title" data-da="Alt hvad du behøver<br>for at lære at trade" data-en="Everything you need<br>to learn to trade">Alt hvad du behøver<br>for at lære at trade</div>
+      <div class="features-list">
+        <div class="feature">
+          <div class="feature-label" data-da="MARKED" data-en="MARKET">MARKED</div>
+          <h4 data-da="Top 100 kryptoer" data-en="Top 100 cryptos">Top 100 kryptoer</h4>
+          <p data-da="Live priser i EUR opdateret hvert 30 sek. Søg og filtrer nemt." data-en="Live prices in EUR updated every 30 sec. Easy search and filter.">Live priser i EUR opdateret hvert 30 sek. Søg og filtrer nemt.</p>
+        </div>
+        <div class="feature">
+          <div class="feature-label" data-da="PORTEFØLJE" data-en="PORTFOLIO">PORTEFØLJE</div>
+          <h4 data-da="Live P/L tracking" data-en="Live P/L tracking">Live P/L tracking</h4>
+          <p data-da="Se din fortjeneste og tab i EUR og procent i realtid med fuld historik." data-en="See your profit and loss in EUR and percent in real time with full history.">Se din fortjeneste og tab i EUR og procent i realtid med fuld historik.</p>
+        </div>
+        <div class="feature">
+          <div class="feature-label" data-da="AUTO-BOTS" data-en="AUTO-BOTS">AUTO-BOTS</div>
+          <h4 data-da="Automatisk handel" data-en="Automatic trading">Automatisk handel</h4>
+          <p data-da="Opret regler der handler automatisk. Køb ved fald, sælg ved stigning, geninvester gevinst." data-en="Create rules that trade automatically. Buy on dip, sell on rise, reinvest profits.">Opret regler der handler automatisk. Køb ved fald, sælg ved stigning, geninvester gevinst.</p>
+        </div>
+      </div>
+    </div>
+  </div>
+</section>
+
+<!-- FAQ -->
+<section id="faq">
+  <div class="section-inner">
+    <div class="section-tag" data-da="SPØRGSMÅL OG SVAR" data-en="FAQ">SPØRGSMÅL OG SVAR</div>
+    <div class="section-title" data-da="Ofte stillede spørgsmål" data-en="Frequently asked questions">Ofte stillede spørgsmål</div>
+    <div class="faq-list">
+      <div class="faq-item">
+        <div class="faq-q" onclick="toggleFaq(this)" data-da="Er det helt gratis?" data-en="Is it completely free?">Er det helt gratis?</div>
+        <div class="faq-a" data-da="Ja, CryptoLearn er 100% gratis. Du skal ikke opgive kreditkortoplysninger eller betale noget som helst. Vi tror på at alle skal have mulighed for at lære crypto trading uden risiko." data-en="Yes, CryptoLearn is 100% free. You don't need to provide credit card information or pay anything. We believe everyone should have the opportunity to learn crypto trading without risk.">Ja, CryptoLearn er 100% gratis. Du skal ikke opgive kreditkortoplysninger eller betale noget som helst. Vi tror på at alle skal have mulighed for at lære crypto trading uden risiko.</div>
+      </div>
+      <div class="faq-item">
+        <div class="faq-q" onclick="toggleFaq(this)" data-da="Er priserne rigtige?" data-en="Are the prices real?">Er priserne rigtige?</div>
+        <div class="faq-a" data-da="Ja! Vi henter live priser fra CoinGecko som er en af verdens største crypto dataudbydere. Priserne opdateres hvert 30 sekund og afspejler det rigtige marked." data-en="Yes! We fetch live prices from CoinGecko which is one of the world's largest crypto data providers. Prices update every 30 seconds and reflect the real market.">Ja! Vi henter live priser fra CoinGecko som er en af verdens største crypto dataudbydere. Priserne opdateres hvert 30 sekund og afspejler det rigtige marked.</div>
+      </div>
+      <div class="faq-item">
+        <div class="faq-q" onclick="toggleFaq(this)" data-da="Kan jeg miste rigtige penge?" data-en="Can I lose real money?">Kan jeg miste rigtige penge?</div>
+        <div class="faq-a" data-da="Nej, aldrig. Du handler udelukkende med fiktive penge. CryptoLearn er en læringsplatform – der er ingen forbindelse til rigtige wallets eller exchanges." data-en="No, never. You only trade with virtual money. CryptoLearn is a learning platform – there is no connection to real wallets or exchanges.">Nej, aldrig. Du handler udelukkende med fiktive penge. CryptoLearn er en læringsplatform – der er ingen forbindelse til rigtige wallets eller exchanges.</div>
+      </div>
+      <div class="faq-item">
+        <div class="faq-q" onclick="toggleFaq(this)" data-da="Hvad er en auto-bot?" data-en="What is an auto-bot?">Hvad er en auto-bot?</div>
+        <div class="faq-a" data-da="En auto-bot er en handelsregel du selv definerer. For eksempel: 'Køb Bitcoin automatisk hvis kursen falder 5%' eller 'Sælg Ethereum hvis den stiger 10%'. Det er en god måde at lære automatiserede strategier på." data-en="An auto-bot is a trading rule you define yourself. For example: 'Buy Bitcoin automatically if the price drops 5%' or 'Sell Ethereum if it rises 10%'. It's a great way to learn automated strategies.">En auto-bot er en handelsregel du selv definerer. For eksempel: 'Køb Bitcoin automatisk hvis kursen falder 5%' eller 'Sælg Ethereum hvis den stiger 10%'. Det er en god måde at lære automatiserede strategier på.</div>
+      </div>
+      <div class="faq-item">
+        <div class="faq-q" onclick="toggleFaq(this)" data-da="Gemmes mine data?" data-en="Is my data saved?">Gemmes mine data?</div>
+        <div class="faq-a" data-da="Din portefølje gemmes lokalt i din browser. Vi arbejder på at tilføje login så data gemmes permanent i skyen på tværs af alle dine enheder." data-en="Your portfolio is saved locally in your browser. We are working on adding login so data is permanently saved in the cloud across all your devices.">Din portefølje gemmes lokalt i din browser. Vi arbejder på at tilføje login så data gemmes permanent i skyen på tværs af alle dine enheder.</div>
+      </div>
+    </div>
+  </div>
+</section>
+
+<!-- CTA -->
+<section style="padding-top:0">
+  <div class="section-inner">
+    <div class="cta-section">
+      <h2 data-da="Klar til at lære<br>at trade crypto?" data-en="Ready to learn<br>crypto trading?">Klar til at lære<br>at trade crypto?</h2>
+      <p data-da="Tilmeld dig gratis og start med € 10.000 i dag" data-en="Sign up free and start with €10,000 today">Tilmeld dig gratis og start med € 10.000 i dag</p>
+      <a href="app.html" class="btn-cta" data-da="Start gratis nu →" data-en="Start free now →">Start gratis nu →</a>
+      <div class="cta-note" data-da="Ingen kreditkort · Ingen risiko · Klar på 30 sekunder" data-en="No credit card · No risk · Ready in 30 seconds">Ingen kreditkort · Ingen risiko · Klar på 30 sekunder</div>
+    </div>
+  </div>
+</section>
+
+<!-- FOOTER -->
+<footer>
+  <div class="footer-inner">
+    <div class="footer-logo">Crypto<span>Learn</span></div>
+    <div class="footer-note" data-da="© 2025 CryptoLearn · Kun til læringsformål · Ingen finansiel rådgivning" data-en="© 2025 CryptoLearn · For educational purposes only · Not financial advice">© 2025 CryptoLearn · Kun til læringsformål · Ingen finansiel rådgivning</div>
+    <div class="footer-links">
+      <a href="#how" data-da="Sådan virker det" data-en="How it works">Sådan virker det</a>
+      <a href="#faq" data-da="FAQ" data-en="FAQ">FAQ</a>
+      <a href="app.html" data-da="Åbn app" data-en="Open app">Åbn app</a>
+    </div>
+  </div>
+</footer>
+
+<script>
+// ── SPROG ──────────────────────────────────────────────────
+let lang = 'da';
+
+function setLang(l) {
+  lang = l;
+  document.querySelectorAll('.lang-btn').forEach(b => b.classList.remove('active'));
+  document.querySelectorAll('.lang-btn').forEach(b => { if(b.textContent.toLowerCase()===l) b.classList.add('active'); });
+  document.querySelectorAll('[data-da]').forEach(el => {
+    const txt = el.getAttribute('data-' + l);
+    if (txt) {
+      if (el.tagName === 'H1' || el.tagName === 'H2') el.innerHTML = txt;
+      else el.textContent = txt;
+    }
+  });
+  document.documentElement.lang = l;
+}
+
+// ── FAQ ────────────────────────────────────────────────────
+function toggleFaq(el) {
+  const item = el.parentElement;
+  const wasOpen = item.classList.contains('open');
+  document.querySelectorAll('.faq-item').forEach(i => i.classList.remove('open'));
+  if (!wasOpen) item.classList.add('open');
+}
+
+// ── MOBILE MENU ────────────────────────────────────────────
+function toggleMenu() {
+  const links = document.querySelector('.nav-links');
+  links.style.display = links.style.display === 'flex' ? 'none' : 'flex';
+  links.style.flexDirection = 'column';
+  links.style.position = 'absolute';
+  links.style.top = '64px';
+  links.style.left = '0';
+  links.style.right = '0';
+  links.style.background = '#f8f7f4';
+  links.style.padding = '20px 24px';
+  links.style.borderBottom = '1px solid rgba(0,0,0,0.08)';
+  links.style.gap = '20px';
+}
+
+// ── SCROLL ANIMATIONER ─────────────────────────────────────
+const observer = new IntersectionObserver((entries) => {
+  entries.forEach(e => {
+    if (e.isIntersecting) {
+      e.target.style.animation = 'fadeUp 0.6s ease forwards';
+      observer.unobserve(e.target);
+    }
+  });
+}, { threshold: 0.1 });
+
+document.querySelectorAll('.benefit, .feature, .step').forEach(el => {
+  el.style.opacity = '0';
+  observer.observe(el);
+});
+</script>
+</body>
+</html>
